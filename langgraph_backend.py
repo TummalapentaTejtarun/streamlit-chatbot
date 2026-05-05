@@ -7,9 +7,13 @@ from langgraph.graph.message import add_messages
 import os
 import streamlit as st
 
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+api_key = st.secrets["OPENAI_API_KEY"]
 
-llm=ChatOpenAI(model='gpt-3.5-turbo')
+llm = ChatOpenAI(
+    api_key=api_key,
+    base_url="https://openrouter.ai/api/v1",
+    model="openai/gpt-3.5-turbo"
+)
 
 class ChatState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
