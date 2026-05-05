@@ -4,9 +4,10 @@ from langchain_core.messages import BaseMessage
 from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph.message import add_messages
-from dotenv import load_dotenv
+import os
+import streamlit as st
 
-load_dotenv()
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 llm=ChatOpenAI(model='gpt-3.5-turbo')
 
